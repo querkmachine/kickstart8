@@ -1,3 +1,4 @@
+const config = require('../package.json');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const argv = require('yargs').argv;
@@ -19,7 +20,7 @@ gulp.task('js:compile', (cb) => {
 	gulp.src('./src/js/**/*')
 		.pipe(sourcemaps.init())
 		.pipe(rollup({
-			name: 'Ident',
+			name: config.name,
 			format: 'umd'
 		}))
 		.pipe(babel({
