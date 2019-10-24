@@ -5,7 +5,7 @@
 # Constants
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$(dirname "$CURRENT_DIR")"
-NAMESPACE="ident"
+NAMESPACE="kickstart"
 
 COMPONENT_NAME=$1
 while [ -z "$COMPONENT_NAME" ]
