@@ -1,12 +1,15 @@
-# IBC Ident Design System
+# Kickstart8
 
-## Asset compilation
+**Kickstart8 is still under development and is probably not ready to use yet.**
 
-CSS and JavaScript will be minified unless your your local environment has certain global variables configured.
+Kickstart8 is... version 8 of [Kickstart](https://github.com/querkmachine/kickstart), my personal project boilerplate. 
 
-You can set the environment variable for your current terminal session by running `export ENVIRONMENT=DEVELOPMENT` before running the asset compilation tasks.
+It's a complete rewrite, aiming to modernise the original thing with some newer ideas:
 
-To set the variable permanently, you can add the above line of code to your `.bashrc` file.  
+* Design tokens that are separate to the Sass.
+* Fully abstracted components: the HTML, CSS, JS, and documentation for each one are all contained in a single folder.
+* Make more use of Nunjucks macros and the ability to nest them inside one another.
+* Auto-generate as much documentation as possible. (One can dream...)
 
 ## Command line scripts
 
