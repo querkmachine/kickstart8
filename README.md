@@ -12,7 +12,7 @@ It's a complete rewrite, aiming to modernise the original thing with some newer 
 * With abstraction, make it possible to only import certain components rather than loading everything for all of them in one go.
 * Auto-generate as much documentation as possible. (One can dream...)
 
-Kickstart8 is directly inspired by the open-source work being done over at [GOV.UK Frontend](http://github.com/alphagov/govuk-frontend) and [Adobe Spectrum](https://github.com/adobe/spectrum-css). 
+Kickstart8 is directly inspired by the open-source work being done over at [GOV.UK Frontend](http://github.com/alphagov/govuk-frontend) and [Adobe Spectrum](https://github.com/adobe/spectrum-css).
 
 ## Command line scripts
 
@@ -25,3 +25,12 @@ Kickstart8 is directly inspired by the open-source work being done over at [GOV.
 `npm run clean`: Deletes compiled directories. Usually not necessary (the above two commands will run this for you), but there in case you need it. 
 
 `npm run add <component-name>`: Adds a new component to the design system. This command creates a boilerplate component in the `components` directory that you can build upon.
+
+## Updating namespaces
+
+Namespaces are currently hardcoded in a couple of places. They need updating if you wanna change them:
+
+* Pre-existing components don't update their namespace. You need to update them yourself.
+* The `NAMESPACE` constant in `bin/add-component.sh` is used to determine the namespace for new boilerplated components. 
+* The `name` in `package.json` is used to namespace all JavaScript code, so that exported methods don't pollute the global namespace.
+* Token namespaces need to be hardcoded manually. [Please let us automate this, Salesforce.](https://github.com/salesforce-ux/theo/issues/185)
