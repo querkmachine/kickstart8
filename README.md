@@ -7,9 +7,12 @@ Kickstart8 is... version 8 of [Kickstart](https://github.com/querkmachine/kickst
 It's a complete rewrite, aiming to modernise the original thing with some newer ideas:
 
 * Design tokens that are separate to the Sass.
-* Fully abstracted components: the HTML, CSS, JS, and documentation for each one are all contained in a single folder.
+* Fully abstracted components: the HTML (well, Nunjucks), Sass, JS, and documentation for each component are all contained in a single folder.
 * Make more use of Nunjucks macros and the ability to nest them inside one another.
+* With abstraction, make it possible to only import certain components rather than loading everything for all of them in one go.
 * Auto-generate as much documentation as possible. (One can dream...)
+
+Kickstart8 is directly inspired by the open-source work being done over at [GOV.UK Frontend](http://github.com/alphagov/govuk-frontend) and [Adobe Spectrum](https://github.com/adobe/spectrum-css). 
 
 ## Command line scripts
 
