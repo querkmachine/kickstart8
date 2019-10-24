@@ -1,0 +1,10 @@
+props:
+  lead_default:
+    value: 1.5
+  lead_title:
+    value: 1.15
+  lead_solid:
+    value: 1
+global:
+  category: line-height
+  type: number

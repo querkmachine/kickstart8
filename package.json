@@ -1,0 +1,43 @@
+{
+  "name": "kickstart",
+  "version": "8.0.0",
+  "description": "",
+  "main": "./dist/js/all.js",
+  "browserslist": [
+    "> 0.25%"
+  ],
+  "scripts": {
+    "start": "gulp",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "export": "gulp export --minify",
+    "add": "sh ./bin/add-component.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kimberly Grey <hi@berly.kim>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@frctl/fractal": "^1.2.0",
+    "@frctl/mandelbrot": "^1.2.1",
+    "@frctl/nunjucks": "^2.0.1",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0-beta.2",
+    "gulp-better-rollup": "^4.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-theo": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulplog": "^1.0.0",
+    "node-sass": "^4.12.0",
+    "require-dir": "^1.2.0",
+    "rollup": "^1.25.2",
+    "theo": "^8.1.4",
+    "yargs": "^14.2.0"
+  }
+}
