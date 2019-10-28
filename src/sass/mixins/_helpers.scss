@@ -1,0 +1,114 @@
+/**
+ * Selection highlight styling helper.
+ */
+
+@mixin selection {
+	::-moz-selection { @content; }
+	::selection { @content; }
+}
+
+/**
+ * Input placeholder styling helper.
+ */
+
+@mixin placeholder {
+	&::-webkit-input-placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+}
+
+/** 
+ * Range input styling helpers.
+ */
+
+// Background "track" section
+@mixin range-input-track {
+	&::-webkit-slider-runnable-track { @content; }
+	&::-moz-range-track { @content; }
+	&::-ms-track { @content; }
+}
+
+// Draggable "thumb" section
+@mixin range-input-thumb {
+	&::-webkit-slider-thumb { @content; }
+	&::-moz-range-thumb { @content; }
+	&::-ms-thumb { @content; }
+}
+
+/**
+ * Typography helpers.
+ * Those with `font-feature-settings` only work if the font being used has
+ * support for the specific feature, otherwise it won't work.
+ */
+
+// Tabulated or fixed width numerals
+@mixin tabulated-figures {
+	font-feature-settings: 'tnum';
+	font-variant-numeric: tabular-nums;
+}
+
+// Use font's all-caps kerning for all caps text 
+@mixin all-caps {
+	text-transform: uppercase;
+	font-feature-settings: 'cpsp';
+}
+
+// Small caps (nice for acronyms)
+@mixin small-caps {
+	font-variant: small-caps;
+	font-feature-settings: 'c2sc', 'smcp';
+}
+
+// Antialias text
+@mixin antialiasing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Overflow text
+@mixin overflow-text {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+// Hide copy (for image replacement)
+@mixin hide-text {
+	text-indent: 110%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+// Force long words to break across lines
+@mixin force-wrap {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
+/**
+ * Scrim gradient. They're like linear gradients, but nicer.
+ * Hat tip to Andreas Larsen.
+ * https://css-tricks.com/easing-linear-gradients/
+ * @param {color}   $color     The name of the breakpoint (and up!) to apply styles to.
+ * @param {string}  $direction The name of the breakpoint (and down!) to apply styles to.
+ */
+
+@mixin scrim-gradient($color, $direction: 'to top') {
+	background-image: linear-gradient(#{$direction}, 
+		rgba($color, 1) 0%,
+		rgba($color, .738) 19%,
+		rgba($color, .541) 34%,
+		rgba($color, .382) 47%,
+		rgba($color, .278) 56.5%,
+		rgba($color, .194) 65%,
+		rgba($color, .126) 73%,
+		rgba($color, .075) 80.2%,
+		rgba($color, .042) 86.1%,
+		rgba($color, .021) 91%,
+		rgba($color, .008) 95.2%,
+		rgba($color, .002) 98.2%,
+		rgba($color, 0) 100%
+	);
+}
