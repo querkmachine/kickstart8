@@ -47,9 +47,8 @@ gulp.task('export',
 );
 
 gulp.task('default',
-	gulp.parallel(
+	gulp.series(
 		'build',
-		'watch',
-		(cb) => cb()
+		'watch'
 	)
 );

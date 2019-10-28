@@ -1,0 +1,15 @@
+{% macro fractalStatuses(category) %}
+| |Status|Description|
+|:-|:-|:-|
+{% for key, status in category -%}
+|<div class="Status-dots"><span class="Status-dot" style="border-color:{{ status.color }};" title="{{ status.label }}"></span></div>|<span class="Status-label" style="background-color:{{ status.color }};border-color:{{ status.color }};">{{ status.label }}</span>|{{ status.description }}|
+{% endfor %}
+{% endmacro %}
+
+{% macro fractalPaletteSwatch(category) %}
+|Token| |Value|
+|:-|:-|:-|
+{% for item in (tokens | theoTokenCategory(category)) -%}
+|<code>{{ item.name | theoTokenSass }}</code>|<span class="Fractal-Swatch" style="background-color:{{ item.value }}"></span>|{{ item.value }}|
+{% endfor %}
+{% endmacro %}

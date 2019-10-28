@@ -8,7 +8,7 @@ gulp.task('tokens:css', () => {
 			transform: { type: 'web' },
 			format: { type: 'custom-properties.css' }
 		}))
-		.pipe(rename({ suffix: '.web' }))
+		.pipe(rename({ basename: 'tokens', suffix: '.web' }))
 		.pipe(gulp.dest('./dist/tokens'))
 });
 
@@ -18,7 +18,7 @@ gulp.task('tokens:sass', () => {
 			transform: { type: 'web' },
 			format: { type: 'scss' }
 		}))
-		.pipe(rename({ suffix: '.web' }))
+		.pipe(rename({ basename: 'tokens', suffix: '.web' }))
 		.pipe(gulp.dest('./dist/tokens'))
 });
 
@@ -26,9 +26,9 @@ gulp.task('tokens:json', () => {
 	return gulp.src('./tokens/tokens.yml')
 		.pipe(theo({
 			transform: { type: 'web' },
-			format: { type: 'json' }
+			format: { type: 'raw.json' }
 		}))
-		.pipe(rename({ suffix: '.web' }))
+		.pipe(rename({ basename: 'tokens', suffix: '.web' }))
 		.pipe(gulp.dest('./dist/tokens'))
 });
 
@@ -38,6 +38,7 @@ gulp.task('tokens:android', () => {
 			transform: { type: 'android' },
 			format: { type: 'android.xml' }
 		}))
+		.pipe(rename({ basename: 'tokens', suffix: '.android' }))
 		.pipe(gulp.dest('./dist/tokens'))
 });
 
@@ -47,6 +48,7 @@ gulp.task('tokens:ios', () => {
 			transform: { type: 'ios' },
 			format: { type: 'ios.json' }
 		}))
+		.pipe(rename({ basename: 'tokens', suffix: '.ios' }))
 		.pipe(gulp.dest('./dist/tokens'))
 });
 

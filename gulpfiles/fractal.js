@@ -1,18 +1,62 @@
 const gulp = require('gulp');
+const tokens = require('../dist/tokens/tokens.web.json');
 const fractal = require('@frctl/fractal').create();
 const mandelbrot = require('@frctl/mandelbrot');
 const nunjucks = require('@frctl/nunjucks')({
-	paths: ['components']
+	paths: ['components', 'docs'],
+	globals: {
+		tokens: tokens.props
+	},
+	filters: {
+		theoTokenCategory: function(object, filterCategory) {
+			let returnArray = [];
+			Object.keys(object).forEach((key) => {
+				const val = object[key];
+				if(val.category === filterCategory) returnArray.push(val);
+			});
+			return returnArray.sort((a, b) => {
+				if(a.name < b.name) return -1;
+				if(a.name > b.name) return 1;
+				return 0;
+			});
+		},
+		theoTokenSass: function(string) {
+			return `$${string.replace(/_/g, '-')}`;
+		}
+	}
 });
 
-fractal.set('project.title', `Design System`);
+fractal.set('project.title', `Kickstart your design system`);
 
-fractal.components.set('engine', nunjucks);
+fractal.components.engine(nunjucks);
 fractal.components.set('ext', '.(html|njk)');
 fractal.components.set('path', './components');
 fractal.components.set('default.preview', '@preview');
 fractal.components.set('default.status', 'prototype');
+fractal.components.set('statuses', {
+	prototype: {
+		label: "Prototype",
+		description: "Prototype code. Do not implement.",
+		color: "#FF3333"
+	},
+	wip: {
+		label: "Work in progress",
+		description: "Unfinished and subject to change. Implement with caution.",
+		color: "#FF9233"
+	},
+	readme: {
+		label: "Needs documentation",
+		description: "Code complete but missing documentation. Implement with caution.",
+		color: "#176BC1"
+	},
+	ready: {
+		label: "Ready",
+		description: "Code and documentation complete. Ready to implement.",
+		color: "#29CC29"
+	}
+});
 
+fractal.docs.engine(nunjucks);
 fractal.docs.set('path', './docs');
 fractal.docs.set('default.status', 'draft');
 
