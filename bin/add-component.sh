@@ -32,7 +32,7 @@ touch "$COMPONENT_PATH/macro.njk"
 touch "$COMPONENT_PATH/$COMPONENT_NAME_LOWER.njk"
 touch "$COMPONENT_PATH/$COMPONENT_NAME_LOWER.config.yaml"
 touch "$COMPONENT_PATH/README.md"
-touch "$COMPONENT_PATH/docs.yaml"
+touch "$COMPONENT_PATH/params.yaml"
 
 # Prepopulate macro
 cat <<EOF > "$COMPONENT_PATH/macro.njk"
@@ -68,7 +68,7 @@ cat <<EOF > "$COMPONENT_PATH/README.md"
 ## Browser considerations
 EOF
 
-cat <<EOF > "$COMPONENT_PATH/docs.yaml"
+cat <<EOF > "$COMPONENT_PATH/params.yaml"
 params:
   - name: attributes
     type: object
