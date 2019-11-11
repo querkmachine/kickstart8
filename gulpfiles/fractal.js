@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const tokens = require('../dist/tokens/tokens.web.json');
 const fractal = require('@frctl/fractal').create();
-const mandelbrot = require('@frctl/mandelbrot');
+const kickstart8theme = require('kickstart8-fractal-theme');
 const nunjucks = require('@frctl/nunjucks')({
 	paths: ['components', 'docs'],
 	globals: {
@@ -62,9 +62,7 @@ fractal.docs.set('default.status', 'draft');
 
 fractal.web.set('static.path', './dist');
 fractal.web.set('builder.dest', './export');
-fractal.web.theme(mandelbrot({
-	'skin': 'black',
-	'nav': ['docs', 'components'],
+fractal.web.theme(kickstart8theme({
 	'format': 'yaml'
 }));
 
