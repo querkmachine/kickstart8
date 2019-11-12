@@ -1,0 +1,33 @@
+params:
+  - name: id
+    type: string
+    required: true
+    description: The unique identifier of the thing.
+  - name: legend
+    type: object
+    required: true
+    params:
+      - name: attributes
+        type: object
+        required: false
+        description: HTML attributes, such as data attributes, to add to the component.
+      - name: classes
+        type: string
+        required: false
+        description: Classes to add to the component.
+  - name: name
+    type: string
+    required: true
+    description: The name of the thing.
+  - name: type
+    type: string
+    required: true
+    description: The type of the input. Defaults to text if unspecified.
+  - name: attributes
+    type: object
+    required: false
+    description: HTML attributes, such as data attributes, to add to the component.
+  - name: classes
+    type: string
+    required: false
+    description: Classes to add to the component.

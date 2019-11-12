@@ -1,0 +1,7 @@
+<input
+	data-module="ident-input"
+	class="ident-input {%- if params.classes %} {{ params.classes }}{% endif %}"
+	type="{{ params.type if params.type else 'text' }}"
+	name="{{ params.name }}"
+	id="{{ params.id }}"
+	{%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>

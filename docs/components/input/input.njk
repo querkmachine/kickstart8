@@ -1,0 +1,17 @@
+{% from "fieldset/macro.njk" import identFieldset %}
+{% from "input/macro.njk" import identInput %}
+
+{% call identFieldset({
+    attributes: { 'style': 'background:yellow; '},
+    legend: {
+        text: "BEES?"
+    }
+}) %}
+
+    {{ identInput({
+        id: 'ExampleInput',
+        name: 'ExampleInput',
+        type: 'number'
+    }) }}
+
+{% endcall %}
