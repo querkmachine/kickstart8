@@ -11,7 +11,7 @@ gulp.task('clean',
 		'js:clean',
 		'css:clean',
 		'fonts:clean',
-		'fractal:clean'
+		'metalsmith:clean'
 	)
 );
 
@@ -21,8 +21,7 @@ gulp.task('watch',
 			'tokens:watch',
 			'js:watch',
 			'css:watch',
-			'fonts:watch',
-			'fractal:watch'
+			'fonts:watch'
 		)
 	)
 );
@@ -42,7 +41,7 @@ gulp.task('build',
 gulp.task('export',
 	gulp.series(
 		'build',
-		'fractal'
+		'metalsmith'
 	)
 );
 
