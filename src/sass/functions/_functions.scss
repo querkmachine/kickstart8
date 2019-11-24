@@ -5,7 +5,7 @@
  */
 
 @function strip-unit($num) {
-	@return $num / ($num * 0 + 1);
+  @return $num / ($num * 0 + 1);
 }
 
 /**
@@ -16,17 +16,21 @@
  */
 
 @function rem-calc($values, $base-value: config(layout, rem-unit)) {
-	$max: length($values);
-	@if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
-	$emValues: ();
-	@for $i from 1 through $max {
-		$emValues: append($emValues, convert-to-rem(nth($values, $i), $base-value));
-	}
-	@return $emValues;
+  $max: length($values);
+  @if $max == 1 {
+    @return convert-to-rem(nth($values, 1), $base-value);
+  }
+  $emValues: ();
+  @for $i from 1 through $max {
+    $emValues: append($emValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $emValues;
 }
 
-@function convert-to-rem($value, $base-value: $global-base)  {
-	$value: strip-unit($value) / strip-unit($base-value) * 1rem;
-	@if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
-	@return $value;
+@function convert-to-rem($value, $base-value: $global-base) {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) {
+    $value: 0;
+  } // Turn 0rem into 0
+  @return $value;
 }

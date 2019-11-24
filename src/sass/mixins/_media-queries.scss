@@ -6,19 +6,19 @@
  */
 
 @mixin mq($min, $max: false) {
-	$query: "";
-	@if $min {
-		$query: append($query, "(min-width: #{map-get($map, $min)})");
-	}
-	@if $max {
-		@if $min and $max {
-			$query: append($query, " and ");
-		}
-		$query: append($query, "(max-width: #{map-get($map, $max) - 1px})");
-	}
-	@media screen and #{$query} {
-		@content;
-	}
+  $query: "";
+  @if $min {
+    $query: append($query, "(min-width: #{map-get($map, $min)})");
+  }
+  @if $max {
+    @if $min and $max {
+      $query: append($query, " and ");
+    }
+    $query: append($query, "(max-width: #{map-get($map, $max) - 1px})");
+  }
+  @media screen and #{$query} {
+    @content;
+  }
 }
 
 /**
@@ -26,9 +26,9 @@
  */
 
 @mixin print {
-	@media only print {
-		@content; 
-	}
+  @media only print {
+    @content;
+  }
 }
 
 /**
@@ -38,7 +38,7 @@
  */
 
 @mixin dark-mode {
-	@media (prefers-color-scheme: dark) {
-		@content;
-	}
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
 }

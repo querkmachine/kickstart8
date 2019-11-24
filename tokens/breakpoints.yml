@@ -1,7 +1,7 @@
 props:
   bp_mercury:
     value: 320px
-  bp_venus: 
+  bp_venus:
     value: 420px
   bp_earth:
     value: 600px

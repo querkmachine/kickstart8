@@ -1,39 +1,39 @@
 props:
   color_grey_100:
-    value: '#F7FAFC'
+    value: "#F7FAFC"
     category: palette-neutral
   color_grey_200:
-    value: '#EDF2F7'
+    value: "#EDF2F7"
     category: palette-neutral
   color_grey_300:
-    value: '#E2E8F0'
+    value: "#E2E8F0"
     category: palette-neutral
   color_grey_400:
-    value: '#CBD5E0'
+    value: "#CBD5E0"
     category: palette-neutral
   color_grey_500:
-    value: '#A0AEC0'
+    value: "#A0AEC0"
     category: palette-neutral
   color_grey_600:
-    value: '#718096'
+    value: "#718096"
     category: palette-neutral
   color_grey_700:
-    value: '#4A5568'
+    value: "#4A5568"
     category: palette-neutral
   color_grey_800:
-    value: '#2D3748'
+    value: "#2D3748"
     category: palette-neutral
   color_grey_900:
-    value: '#1A202C'
+    value: "#1A202C"
     category: palette-neutral
-  color_primary: 
-    value: '#5832AB'
+  color_primary:
+    value: "#5832AB"
     category: palette-brand
-  color_secondary: 
-    value: '#D10076'
+  color_secondary:
+    value: "#D10076"
     category: palette-brand
   color_accent:
-    value: '#FFEB3B'
+    value: "#FFEB3B"
     category: palette-brand
 global:
   type: color
