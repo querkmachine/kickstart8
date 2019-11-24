@@ -2,6 +2,3 @@ node_modules/
 /components/
 /dist/
 /export/
-
-Thumbs.db
-.DS_Store
