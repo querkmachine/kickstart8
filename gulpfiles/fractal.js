@@ -1,39 +1,62 @@
-const gulp = require('gulp');
-const tokens = require('../dist/tokens/tokens.web.json');
-const fractal = require('@frctl/fractal').create();
-const kickstart8theme = require('kickstart8-fractal-theme');
-const nunjucks = require('@frctl/nunjucks')({
-	paths: ['components', 'docs'],
+const gulp = require("gulp");
+const path = require("path");
+const fs = require("fs");
+const _ = require("lodash");
+const yamljs = require("yamljs");
+const fractal = require("@frctl/fractal").create();
+const mandelbrot = require("@frctl/mandelbrot");
+
+function getDesignTokens() {
+	const dirPath = path.resolve(__dirname, "../tokens");
+	const files = fs.readdirSync(dirPath);
+	let tokenData = {};
+	files.forEach(file => {
+		const fileName = file.split(".")[0];
+		const fileProps = yamljs.load(path.resolve(dirPath, file)).props;
+		tokenData[fileName] = fileProps ? fileProps : {};
+	});
+	console.log({ tokenData });
+	return tokenData;
+}
+
+const nunjucks = require("@frctl/nunjucks")({
+	paths: ["components", "docs"],
 	globals: {
-		tokens: tokens.props
+		tokens: getDesignTokens()
 	},
 	filters: {
 		theoTokenCategory: function(object, filterCategory) {
-			let returnArray = [];
-			Object.keys(object).forEach((key) => {
+			let filteredTokens = {};
+			Object.keys(object).forEach(key => {
 				const val = object[key];
-				if(val.category === filterCategory) returnArray.push(val);
+				if (val.category === filterCategory) filteredTokens[key] = val;
 			});
-			return returnArray.sort((a, b) => {
-				if(a.name < b.name) return -1;
-				if(a.name > b.name) return 1;
-				return 0;
-			});
+			return filteredTokens;
 		},
 		theoTokenSass: function(string) {
-			return `$${string.replace(/_/g, '-')}`;
+			return `$${string.replace(/_/g, "-")}`;
+		},
+		merge: function(...objs) {
+			let result = {};
+			objs.forEach(obj => {
+				if (!obj || typeof obj !== "object") {
+					return;
+				}
+				result = _.merge(result, obj);
+			});
+			return result;
 		}
 	}
 });
 
-fractal.set('project.title', `Kickstart your design system`);
+fractal.set("project.title", `Kickstart your design system`);
 
 fractal.components.engine(nunjucks);
-fractal.components.set('ext', '.(html|njk)');
-fractal.components.set('path', './components');
-fractal.components.set('default.preview', '@preview');
-fractal.components.set('default.status', 'prototype');
-fractal.components.set('statuses', {
+fractal.components.set("ext", ".(html|njk)");
+fractal.components.set("path", "./components");
+fractal.components.set("default.preview", "@preview");
+fractal.components.set("default.status", "prototype");
+fractal.components.set("statuses", {
 	prototype: {
 		label: "Prototype",
 		description: "Prototype code. Do not implement.",
@@ -57,26 +80,32 @@ fractal.components.set('statuses', {
 });
 
 fractal.docs.engine(nunjucks);
-fractal.docs.set('path', './docs');
-fractal.docs.set('default.status', 'draft');
+fractal.docs.set("path", "./docs");
+fractal.docs.set("default.status", "draft");
 
-fractal.web.set('static.path', './dist');
-fractal.web.set('builder.dest', './export');
-fractal.web.theme(kickstart8theme({
-	'format': 'yaml'
-}));
+fractal.web.set("static.path", "./dist");
+fractal.web.set("builder.dest", "./export");
+fractal.web.theme(
+	mandelbrot({
+		format: "yaml",
+		nav: ["docs", "components", "assets"],
+		panels: ["notes", "view", "params", "html", "resources", "info"],
+		styles: ["default"]
+	})
+);
 
-gulp.task('fractal:clean', () => {
-	const del = require('del');
-	return del(['./export']);
+gulp.task("fractal:clean", () => {
+	const del = require("del");
+	return del(["./export"]);
 });
 
-gulp.task('fractal:watch', () => {
+gulp.task("fractal:watch", () => {
 	const logger = fractal.cli.console;
 	const server = fractal.web.server({
-		sync: true
+		sync: true,
+		port: 9000
 	});
-	server.on('error', (err) => {
+	server.on("error", err => {
 		logger.error(err.message);
 	});
 	return server.start().then(() => {
@@ -84,16 +113,16 @@ gulp.task('fractal:watch', () => {
 	});
 });
 
-gulp.task('fractal', () => {
+gulp.task("fractal", () => {
 	const logger = fractal.cli.console;
 	const builder = fractal.web.builder();
-	builder.on('progress', (completed, total) => {
-		logger.update(`Exported ${completed} of ${total} items.`, 'info');
+	builder.on("progress", (completed, total) => {
+		logger.update(`Exported ${completed} of ${total} items.`, "info");
 	});
-	builder.on('error', (err) => {
+	builder.on("error", err => {
 		logger.error(err.message);
 	});
 	return builder.build().then(() => {
-		logger.success('Fractal build completed.');
+		logger.success("Fractal build completed.");
 	});
 });
