@@ -12,6 +12,7 @@
     "build": "gulp build",
     "export": "gulp export --minify",
     "add": "sh ./bin/add-component.sh",
+    "prettify": "pretty-quick",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kimberly Grey <hi@berly.kim>",
@@ -36,12 +37,20 @@
     "gulp-theo": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "gulplog": "^1.0.0",
+    "husky": "^3.1.0",
     "node-sass": "^4.12.0",
+    "prettier": "1.19.1",
+    "pretty-quick": "^2.0.1",
     "require-dir": "^1.2.0",
     "theo": "^8.1.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "yargs": "^14.2.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
