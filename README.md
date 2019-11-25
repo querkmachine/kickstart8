@@ -25,7 +25,7 @@ Kickstart8 is directly inspired by the open-source work being done over at [GOV.
 
 `npm run export`: Compiles tokens, minified assets and a static version of the Fractal system to the `export` directory.
 
-`npm run prettify`: Automatically checks for code format breaches in all JavaScript, Sass, Yaml and Markdown files, correcting them automatically where possible.
+`npm run prettify`: Automatically checks for code format breaches in all files supported by Prettier (notably JS, Sass, Markdown and Yaml), correcting them automatically where possible. This currently uses the default Prettier configuration.
 
 `npm run clean`: Deletes compiled directories. Usually not necessary (the above two commands will run this for you), but there in case you need it.
 
