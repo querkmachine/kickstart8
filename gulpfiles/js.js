@@ -19,7 +19,8 @@ gulp.task("js:watch", () => {
 
 gulp.task("js:compile", () => {
   const b = browserify({
-    entries: ["./src/js/all.js"]
+    entries: ["./src/js/all.js"],
+    standalone: config.name
   });
   return b
     .transform("babelify", { presets: ["@babel/preset-env"] })
