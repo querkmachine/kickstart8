@@ -35,5 +35,5 @@ Namespaces are currently hardcoded in a couple of places. They need updating if 
 
 - Pre-existing components don't update their namespace. You need to update them yourself.
 - The `NAMESPACE` constant in `bin/add-component.sh` is used to determine the namespace for new boilerplated components.
-- The `name` in `package.json` is used to namespace all JavaScript code, so that exported methods don't pollute the global namespace.
-- Token namespaces need to be hardcoded manually. [Please let us automate this, Salesforce.](https://github.com/salesforce-ux/theo/issues/185)
+- The `namespace` option in `package.json` is used to namespace all JavaScript code, so that exported methods don't pollute the global namespace.
+- Token namespaces, if used, need to be hardcoded manually. [Please let us automate this, Salesforce.](https://github.com/salesforce-ux/theo/issues/185)

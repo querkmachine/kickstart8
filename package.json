@@ -1,5 +1,6 @@
 {
   "name": "kickstart",
+  "namespace": "kickstart",
   "version": "8.0.0",
   "description": "",
   "main": "./dist/js/all.js",
