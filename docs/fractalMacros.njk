@@ -2,7 +2,7 @@
 |Status|Description|
 |:-|:-|
 {% for key, status in category -%}
-|<span class="ks-status" style="background-color:{{ status.color }};">{{ status.label }}</span>|{{ status.description }}|
+|<span class="Status-label" style="background-color:{{ status.color }};border-color:{{ status.color }};">{{ status.label }}</span>|{{ status.description }}|
 {% endfor %}
 {% endmacro %}
 
