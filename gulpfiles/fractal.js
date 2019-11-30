@@ -91,7 +91,7 @@ fractal.web.theme(
     format: "yaml",
     nav: ["docs", "components", "assets"],
     panels: ["notes", "view", "params", "html", "resources", "info"],
-    styles: ["default"]
+    styles: ["default", "/css/styleguide.css"]
   })
 );
 

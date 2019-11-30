@@ -1,0 +1,50 @@
+@import "../../dist/tokens/tokens.web.scss";
+
+html {
+  font-family: unquote($font-body);
+  line-height: $lead-default;
+}
+
+// Override font wherever Open Sans is used
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.Pen-title,
+.Tree-title,
+.Tree-item,
+.Tree-collectionLabel,
+.Document-title,
+.Prose,
+.Prose h1,
+.Prose h2,
+.Prose h3,
+.Prose caption,
+.Status-label,
+.Browser-tab a,
+.Error--render .Error-title,
+.Error--render .Error-message,
+.FileBrowser-selectWrapper .select2-container,
+.FileBrowser-select-label,
+.select2-results__option,
+.Meta-key,
+.Meta-value {
+  font-family: inherit;
+  font-feature-settings: "liga", "dlig", "kern";
+}
+
+.Header {
+  color: $color-white;
+  background-color: $color-primary;
+  font-weight: 700;
+}
+
+.Fractal-Swatch {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.1);
+}
