@@ -35,6 +35,10 @@ h6,
   font-feature-settings: "liga", "dlig", "kern";
 }
 
+.Prose {
+  max-width: none;
+}
+
 .Header {
   color: $color-white;
   background-color: $color-primary;

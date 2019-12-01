@@ -1,15 +1,88 @@
-{% macro fractalStatuses(category) %}
-|Status|Description|
-|:-|:-|
-{% for key, status in category -%}
-|<span class="Status-label" style="background-color:{{ status.color }};border-color:{{ status.color }};">{{ status.label }}</span>|{{ status.description }}|
-{% endfor %}
+{# Generic table wrapper. #}
+{% macro _fractalTable(headers) %}
+<table>
+    <thead>
+        <tr>
+            {%- for head in headers %}
+                <th {%- for attribute, value in head.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+                    {{ head.text }}
+                </th>
+            {%- endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {{- caller() if caller -}}
+    </tbody>
+</table>
 {% endmacro %}
 
-{% macro fractalPaletteSwatch(category) %}
-|Token| |Value|
-|:-|:-|:-|
-{% for item in (tokens | theoTokenCategory(category)) -%}
-|<code>{{ item.name | theoTokenSass }}</code>|<span class="Fractal-Swatch" style="background-color:{{ item.value }}"></span>|{{ item.value }}|
-{% endfor %}
+{# Status tags descriptions. #}
+{% macro fractalStatuses(category) %}
+    {% call _fractalTable([
+        { text: 'Status' },
+        { text: 'Description' }
+    ]) %}
+        {%- for key, status in category -%}
+            <tr>
+                <td width="25%"><span class="Status-label" style="background-color:{{ status.color }};border-color:{{ status.color }};">{{ status.label }}</span></td>
+                <td>{{ status.description }}</td>
+            </tr>
+        {%- endfor -%}
+    {% endcall %}
+{% endmacro %}
+
+{# All tokens table. #}
+{% macro fractalTokens(tokens) %}
+    {% call _fractalTable([
+        { text: 'Token' },
+        { text: 'Value' }
+    ]) %}
+        {%- for title, section in tokens -%}
+            {%- if title != 'tokens' -%}
+                <tr>
+                    <th colspan="2">{{ title }}</th>
+                </tr>
+            {%- endif -%}
+            {%- for key, data in section -%}
+                <tr>
+                    <td width="50%"><code>{{ key | theoTokenSass }}</code></td>
+                    <td>{{ data.value }}</td>
+                </tr>
+            {%- endfor -%}
+        {%- endfor -%}
+    {% endcall %}
+{% endmacro %}
+
+{# Single colour swatches list. #}
+{% macro fractalColoursSingle(tokens) %}
+    {% call _fractalTable([
+        { text: 'Token' },
+        { text: 'Value', attributes: { 'colspan': 2 } }
+    ]) %}
+        {%- for key, data in tokens -%}
+            <tr>
+                <td width="50%"><code>{{ key | theoTokenSass }}</code></td>
+                <td width="20"><span class="Fractal-Swatch" style="background-color:{{ data.value }}"></span></td>
+                <td>{{ data.value }}</td>
+            </tr>
+        {%- endfor -%}
+    {% endcall %}
+{% endmacro %}
+
+{% macro fractalTyperun(tokenType, tokens, text) %}
+    {% call _fractalTable([
+        { text: 'Token' },
+        { text: 'Preview' }
+    ]) %}
+        {%- for key, data in tokens -%}
+            <tr>
+                <td width="20%"><code>{{ key | theoTokenSass }}</code> {{ longPreview | dump }}</td>
+                <td>
+                    <div class="Fractal-Typerun__preview" style="{{ tokenType }}: {{ data.value }}">
+                        {{- text -}}
+                    </div>
+                </td>
+            </tr>
+        {%- endfor -%}
+    {% endcall %}
 {% endmacro %}

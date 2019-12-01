@@ -2,12 +2,12 @@
 status: draft
 ---
 
-{% from './fractalMacros.njk' import fractalPaletteSwatch %}
+{% from './fractalMacros.njk' import fractalColoursSingle %}
 
 ## Brand colours
 
-{{ fractalPaletteSwatch('palette-brand') }}
+{{ fractalColoursSingle(tokens.colors | theoTokenCategory('palette-brand')) }}
 
 ## Neutrals
 
-{{ fractalPaletteSwatch('palette-neutral') }}
+{{ fractalColoursSingle(tokens.colors | theoTokenCategory('palette-neutral')) }}

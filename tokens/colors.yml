@@ -1,6 +1,6 @@
 props:
   color_white:
-    value: "#ffffff"
+    value: "#FFFFFF"
     category: palette-neutral
   color_black:
     value: "#000000"
