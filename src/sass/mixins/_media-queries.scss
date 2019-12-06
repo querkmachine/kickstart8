@@ -8,13 +8,13 @@
 @mixin mq($min, $max: false) {
   $query: "";
   @if $min {
-    $query: append($query, "(min-width: #{map-get($map, $min)})");
+    $query: append($query, "(min-width: #{$min})");
   }
   @if $max {
     @if $min and $max {
       $query: append($query, " and ");
     }
-    $query: append($query, "(max-width: #{map-get($map, $max) - 1px})");
+    $query: append($query, "(max-width: #{$max - 1px})");
   }
   @media screen and #{$query} {
     @content;
