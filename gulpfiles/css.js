@@ -11,7 +11,8 @@ gulp.task("css:clean", () => {
 });
 
 gulp.task("css:watch", () => {
-  gulp.watch("./src/sass/**/*", gulp.parallel("css"));
+  gulp.watch("./src/sass/**/*", gulp.parallel("css:compile"));
+  gulp.watch("./components/**/*.{sass,scss}", gulp.parallel("css:compile"));
 });
 
 gulp.task("css:compile", () => {

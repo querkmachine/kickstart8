@@ -15,6 +15,7 @@ gulp.task("js:clean", () => {
 
 gulp.task("js:watch", () => {
   gulp.watch("./src/js", gulp.parallel("js:compile"));
+  gulp.watch("./components/**/*.js", gulp.parallel("js:compile"));
 });
 
 gulp.task("js:compile", () => {
