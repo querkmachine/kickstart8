@@ -9,6 +9,7 @@ gulp.task(
   "clean",
   gulp.parallel(
     "tokens:clean",
+    "images:clean",
     "js:clean",
     "css:clean",
     "fonts:clean",
@@ -21,6 +22,7 @@ gulp.task(
   gulp.series(
     gulp.parallel(
       "tokens:watch",
+      "images:watch",
       "js:watch",
       "css:watch",
       "fonts:watch",
@@ -33,7 +35,7 @@ gulp.task(
   "build",
   gulp.series(
     "tokens",
-    gulp.parallel("js", "css", "fonts", cb => cb())
+    gulp.parallel("images", "js", "css", "fonts", cb => cb())
   )
 );
 
