@@ -1,9 +1,8 @@
 const gulp = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
 const autoprefixer = require("gulp-autoprefixer");
-const sass = require("gulp-sass");
+const sass = require("gulp-dart-sass");
 const argv = require("yargs").argv;
-sass.compiler = require("node-sass");
 
 gulp.task("css:clean", () => {
   const del = require("del");
@@ -21,7 +20,7 @@ gulp.task("css:compile", () => {
     .pipe(sourcemaps.init())
     .pipe(
       sass({
-        outputStyle: argv.minify ? "compressed" : "nested"
+        outputStyle: argv.minify ? "compressed" : "expanded"
       }).on("error", sass.logError)
     )
     .pipe(autoprefixer())

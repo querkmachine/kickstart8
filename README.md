@@ -1,6 +1,6 @@
 # Kickstart8
 
-**Kickstart8 is still under development and is probably not ready to use yet.**
+**Kickstart8 is still under development and may still integrate breaking changes.**
 
 Kickstart8 is... version 8 of [Kickstart](https://github.com/querkmachine/kickstart), my personal project boilerplate.
 
@@ -12,6 +12,7 @@ It's a complete rewrite, aiming to modernise the original thing with some newer 
 - With abstraction, make it possible to only import certain components rather than loading everything for all of them in one go.
 - Auto-generate as much documentation as possible. (One can dream...)
 - Enforce more consistent code style, via use of [Prettier](https://prettier.io).
+- Move from node-sass to dart-sass.
 
 Kickstart8 is directly inspired by the open-source work being done over at [GOV.UK Frontend](http://github.com/alphagov/govuk-frontend) and [Adobe Spectrum](https://github.com/adobe/spectrum-css).
 
