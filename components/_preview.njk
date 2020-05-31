@@ -7,8 +7,10 @@
     <title>Preview</title>
   </head>
   <body>
+
     {{ yield | safe }}
 
     <script src="{{ '/js/all.js' | path }}"></script>
+    <script>window.kickstart.initAll();</script>
   </body>
 </html>
