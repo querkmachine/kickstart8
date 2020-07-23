@@ -79,16 +79,16 @@ cat <<EOF > "$COMPONENT_PATH/params.yaml"
 params:
   - name: attributes
     type: object
-    required: false
     description: HTML attributes, such as data attributes, to add to the component.
   - name: classes
     type: string
-    required: false
     description: Classes to add to the component.
 EOF
 
 # Prepopulate Sass file
 cat <<EOF > "$COMPONENT_PATH/_$COMPONENT_NAME_LOWER.scss"
+@use "tokens";
+
 .${NAMESPACE}-${COMPONENT_NAME_LOWER} {
     // Put code here
 }
