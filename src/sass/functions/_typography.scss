@@ -1,0 +1,36 @@
+@use "tokens";
+@use "sass:math";
+@use "sass:list";
+@use "sass:map";
+
+@function ms-font-size(
+	$pow: 0,
+	$base: tokens.$font-size-base,
+	$ratio: tokens.$font-size-ratio
+) {
+	@if $pow != 0 {
+		@return $base * math.pow($ratio, $pow);
+	} @else {
+		@return $base;
+	}
+}
+
+$font-size-map: tokens.$font-size;
+@if list.length($font-size-map) == 0 {
+	$font-size-map: (
+		jumbotron: ms-font-size(6),
+		title: ms-font-size(5),
+		subtitle: ms-font-size(4),
+		pullquote: ms-font-size(3),
+		small-subtitle: ms-font-size(2),
+		byline: ms-font-size(1),
+		body: ms-font-size(0),
+		endnote: ms-font-size(-1),
+		footnote: ms-font-size(-2)
+	);
+}
+
+// Use semantic font-size names
+@function size($name: "body") {
+	@return map.get($font-size-map, $name);
+}

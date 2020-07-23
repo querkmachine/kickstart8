@@ -1,0 +1,184 @@
+@use "tokens";
+@use "a11y";
+
+// Form input base.
+// These are common styles for all "text-like" inputs, such as text, textarea, selects, and any similar custom form input components that are created.
+@mixin form-base {
+	border: 1px solid tokens.$color-white;
+	border-radius: 0;
+	color: tokens.$color-black;
+	background-color: tokens.$color-white;
+	box-shadow: none;
+	font-family: tokens.$font-header;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: 700;
+	line-height: tokens.$lead-default;
+	&:focus {
+		border-color: tokens.$color-primary-dark;
+	}
+}
+
+@mixin form-base--input {
+	$paddingInline: 0.75rem;
+	@include form-base;
+	width: 100%;
+	padding: 0.5rem $paddingInline;
+	border-radius: tokens.$border-radius;
+	transition-property: border-color, box-shadow;
+	transition-duration: 0.3333s;
+	transition-timing-function: ease;
+	&[aria-invalid="true"] {
+		border-color: tokens.$color-error;
+	}
+	&:focus {
+		@include a11y.focus-ring;
+		box-shadow: 0 0.25rem 0.5rem 0 rgba(tokens.$color-black, 0.1);
+	}
+	&:valid {
+		$iconSize: 1rem;
+		padding-right: ($paddingInline * 2) + $iconSize;
+		background-image: url("../images/check.svg");
+		background-repeat: no-repeat;
+		background-size: $iconSize $iconSize;
+		background-position: right $paddingInline top 50%;
+	}
+}
+
+@mixin form-base--disabled {
+	filter: saturate(0);
+	opacity: 0.5;
+	pointer-events: none;
+	cursor: default;
+}
+
+// Checkbox mixins.
+// Checkbox styles can get used in quite a few places, so having these abstracted out is pretty nice to have.
+@mixin checkbox(
+	$size: 1em,
+	$bgColor: white,
+	$checkRatio: 0.8,
+	$strokeWidth: 3px,
+	$strokeColor: black,
+	$verticalOffset: 0
+) {
+	@supports (-webkit-appearance: none) or (-moz-appearance: none) or
+		(appearance: none) {
+		@include form-base;
+		box-sizing: content-box;
+		display: inline-block;
+		width: $size;
+		height: $size;
+		position: relative;
+		top: $verticalOffset;
+		border: 1px solid $bgColor;
+		background-color: $bgColor;
+		line-height: 1;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		&::after {
+			$checkWidth: $size * $checkRatio; // change this to make the check smaller/larger relative to box
+			$checkHeight: $checkWidth * 0.4;
+			@include checkbox--mark(
+				$color: $strokeColor,
+				$width: $checkWidth,
+				$height: $checkHeight,
+				$strokeWidth: $strokeWidth
+			);
+			position: absolute;
+			top: calc(
+				#{($size - $checkHeight) / 2.5} - 1px
+			); // as below but we want slightly less than half remaining space to bias towards top of box
+			left: calc(
+				#{($size - $checkWidth) / 2} - 1px
+			); // divide remaining space by two to get horizontal offset
+		}
+		&:checked {
+			border-color: $strokeColor;
+			&::after {
+				content: "";
+			}
+		}
+		&:disabled {
+			@include form-base--disabled;
+		}
+		&:focus {
+			@include a11y.focus-ring;
+		}
+	}
+}
+
+@mixin checkbox--mark($color, $width: 1em, $height: 0.5em, $strokeWidth: 3px) {
+	display: block;
+	width: $width;
+	height: $height;
+	border-width: 0 0 $strokeWidth $strokeWidth;
+	border-style: solid;
+	border-color: $color;
+	transform: rotate(-45deg);
+}
+
+// Radio button mixins.
+// Radio styles can also get used in quite a few places.
+@mixin radio(
+	$size: 1em,
+	$bgColor: white,
+	$fillRatio: 0.6,
+	$fillColor: black,
+	$verticalOffset: 0
+) {
+	@supports (-webkit-appearance: none) or (-moz-appearance: none) or
+		(appearance: none) {
+		@include form-base;
+		box-sizing: content-box;
+		display: inline-block;
+		width: $size;
+		height: $size;
+		position: relative;
+		top: $verticalOffset;
+		border: 1px solid $bgColor;
+		border-radius: 50%;
+		line-height: 1;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		cursor: pointer;
+		&::after {
+			display: inline-block;
+			margin: ($size * (1 - $fillRatio)) / 2;
+			width: $size * $fillRatio;
+			height: $size * $fillRatio;
+			border-radius: 50%;
+			background-color: $fillColor;
+		}
+		&:checked {
+			border-color: $fillColor;
+			&::after {
+				content: "";
+			}
+		}
+		&:disabled {
+			@include form-base--disabled;
+		}
+		&:focus {
+			@include a11y.focus-ring;
+		}
+	}
+}
+
+// Input placeholder styling helper.
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+}

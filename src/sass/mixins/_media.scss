@@ -1,0 +1,31 @@
+// Media query management. Hat tip to Tim Knight.
+// https://medium.com/developing-with-sass/refactoring-my-simple-sass-breakpoint-mixin-71205dd6badd
+@mixin mq($min, $max: false) {
+	$query: "";
+	@if $min {
+		$query: append($query, "(min-width: #{$min})");
+	}
+	@if $max {
+		@if $min and $max {
+			$query: append($query, " and ");
+		}
+		$query: append($query, "(max-width: #{$max - 1px})");
+	}
+	@media screen and #{$query} {
+		@content;
+	}
+}
+
+// Print stylesheet handler.
+@mixin print {
+	@media only print {
+		@content;
+	}
+}
+
+// Dark mode style hander.
+@mixin dark-mode {
+	@media (prefers-color-scheme: dark) {
+		@content;
+	}
+}

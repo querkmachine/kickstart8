@@ -1,57 +1,62 @@
 {
-  "name": "kickstart",
-  "namespace": "kickstart",
-  "version": "8.0.0",
-  "description": "",
-  "main": "./dist/js/all.js",
-  "browserslist": [
-    "> 0.25%"
-  ],
-  "scripts": {
-    "start": "gulp",
-    "clean": "gulp clean",
-    "build": "gulp build",
-    "export": "gulp export --minify",
-    "add": "sh ./bin/add-component.sh",
-    "prettify": "pretty-quick",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kimberly Grey <hi@berly.kim>",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@frctl/fractal": "^1.2.0",
-    "@frctl/mandelbrot": "git+https://github.com/querkmachine/mandelbrot.git",
-    "@frctl/nunjucks": "^2.0.1",
-    "babelify": "^10.0.0",
-    "browserify": "^16.5.0",
-    "del": "^5.1.0",
-    "gulp": "^4.0.2",
-    "gulp-dart-sass": "^1.0.2",
-    "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^6.2.0",
-    "gulp-newer": "^1.4.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-theo": "^2.0.0",
-    "gulp-uglify": "^3.0.2",
-    "gulplog": "^1.0.0",
-    "husky": "^3.1.0",
-    "postcss-preset-env": "^6.7.0",
-    "prettier": "1.19.1",
-    "pretty-quick": "^2.0.1",
-    "require-dir": "^1.2.0",
-    "theo": "^8.1.4",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "yargs": "^14.2.0"
-  },
-  "dependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+	"name": "kickstart",
+	"namespace": "kickstart",
+	"version": "8.0.0",
+	"description": "",
+	"main": "./dist/js/all.js",
+	"browserslist": [
+		"> 0.25%"
+	],
+	"scripts": {
+		"start": "gulp",
+		"clean": "gulp clean",
+		"build": "gulp build",
+		"export": "gulp export --minify",
+		"add": "sh ./bin/add-component.sh",
+		"prettify": "pretty-quick",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Kimberly Grey <hi@berly.kim>",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/core": "^7.6.4",
+		"@babel/preset-env": "^7.6.3",
+		"@frctl/fractal": "^1.2.0",
+		"@frctl/mandelbrot": "git+https://github.com/querkmachine/mandelbrot.git",
+		"@frctl/nunjucks": "^2.0.1",
+		"babelify": "^10.0.0",
+		"browserify": "^16.5.0",
+		"del": "^5.1.0",
+		"gulp": "^4.0.2",
+		"gulp-dart-sass": "^1.0.2",
+		"gulp-if": "^3.0.0",
+		"gulp-imagemin": "^6.2.0",
+		"gulp-newer": "^1.4.0",
+		"gulp-postcss": "^8.0.0",
+		"gulp-rename": "^1.4.0",
+		"gulp-sourcemaps": "^2.6.5",
+		"gulp-theo": "^2.0.0",
+		"gulp-uglify": "^3.0.2",
+		"gulplog": "^1.0.0",
+		"husky": "^3.1.0",
+		"normalize-scss": "^7.0.1",
+		"postcss-preset-env": "^6.7.0",
+		"prettier": "1.19.1",
+		"pretty-quick": "^2.0.1",
+		"require-dir": "^1.2.0",
+		"theo": "^8.1.4",
+		"vinyl-buffer": "^1.0.1",
+		"vinyl-source-stream": "^2.0.0",
+		"yargs": "^14.2.0"
+	},
+	"dependencies": {},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
+	"prettier": {
+		"useTabs": true,
+		"endOfLine": "lf"
+	}
 }

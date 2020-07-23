@@ -1,9 +1,3 @@
 imports:
-  - ./breakpoints.yml
   - ./colors.yml
   - ./font-family.yml
-  - ./font-leading.yml
-  - ./font-measures.yml
-  - ./font-size.yml
-  - ./font-tracking.yml
-  - ./z-index.yml

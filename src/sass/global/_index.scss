@@ -1,0 +1,24 @@
+@use "tokens";
+@use "mixins/theme";
+@use "mixins/typography";
+
+@forward "utilities";
+
+@charset "utf-8";
+
+html {
+	color: tokens.$color-black;
+	background-color: tokens.$color-white;
+	font-family: typography.size(body);
+	line-height: tokens.$lead-default;
+	writing-mode: tokens.$writing-mode;
+	@if tokens.$rtl {
+		direction: rtl;
+	} @else {
+		direction: ltr;
+	}
+}
+
+a:not([class]) {
+	@include theme.default-link;
+}
