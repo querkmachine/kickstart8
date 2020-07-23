@@ -12,7 +12,8 @@ It's a complete rewrite, aiming to modernise the original thing with some newer 
 - With abstraction, make it possible to only import certain components rather than loading everything for all of them in one go.
 - Auto-generate as much documentation as possible. (One can dream...)
 - Enforce more consistent code style, via use of [Prettier](https://prettier.io).
-- Move from node-sass to dart-sass.
+- Move from node-sass to dart-sass and adopt the Sass module system.
+- Use PostCSS to allow support for next generation CSS features (like logical properties) in browsers that don't yet support them.
 
 Kickstart8 is directly inspired by the open-source work being done over at [GOV.UK Frontend](http://github.com/alphagov/govuk-frontend) and [Adobe Spectrum](https://github.com/adobe/spectrum-css).
 

@@ -7,4 +7,4 @@ props:
     value: Hack, Consolas, Monaco, 'Andale Mono', monospace
 global:
   category: font
-  type: string
+  type: property

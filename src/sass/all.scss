@@ -1,6 +1,7 @@
-@import "../../dist/tokens/tokens.web.scss";
+// Put project-specific overrides to the design tokens in this Sass map, if necessary.
+@use "tokens" with (
+	$client-name: 'Felinesoft'
+);
 
-@import "functions/functions";
-
-@import "mixins/helpers";
-@import "mixins/media-queries";
+// Load everything else.
+@use "shared";

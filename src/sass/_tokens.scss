@@ -1,0 +1,46 @@
+// Load in the global design tokens. These are what will be used, unless overridden in the entry file config.
+// The rest of this file can be used to define globally available tokens that are specific to this project (i.e. not brand related).
+@forward "../../dist/tokens/tokens.web";
+
+// Metadata
+$client-name: "" !default;
+
+// Localisation
+$rtl: false !default;
+$writing-mode: horizontal-tb !default;
+
+// Layout
+$layout-container-width: 1180px !default;
+
+// Non-brand color palette
+$color-black: black !default;
+$color-white: white !default;
+$color-success: green !default;
+$color-warning: orange !default;
+$color-error: red !default;
+$color-highlight: blue !default;
+$color-a11y: #ffcc00 !default;
+
+// Typography - Use hardcoded font-size values...
+$font-size: () !default;
+
+// Typography - ...Or use auto-generated modular scale
+$font-size-base: 1rem !default;
+$font-size-ratio: 1.25 !default; // 1:1.618
+
+// Typography - Line heights
+$lead-default: 1.5 !default;
+$lead-title: 1.25 !default;
+$lead-solid: 1 !default;
+
+// Typography - Line measures
+$measure-default: 40em !default;
+$measure-wide: 50em !default;
+$measure-narrow: 22em !default;
+
+// Z-indexes
+$layer-modal: 9000 !default;
+$layer-backdrop: 8000 !default;
+$layer-overlay: 1000 !default;
+$layer-default: 1 !default;
+$layer-underlay: -1 !default;

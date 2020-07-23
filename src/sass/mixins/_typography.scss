@@ -1,0 +1,88 @@
+@forward "functions/typography";
+
+// Use tabular figures (if available).
+// Makes each digit have equal space dedicated to them. Best suited for numbers that are in tables or otherwise are directly compared.
+@mixin tabulated-figures {
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: "onum" 0, "tnum";
+}
+
+// Use oldstyle figures (if available).
+// Oldstyle figures have ascenders and descenders, like normal text. Best suited for running text and body copy.
+@mixin oldstyle-figures {
+	font-variant-numeric: oldstyle-nums;
+	font-feature-settings: "onum";
+}
+
+// Use lining figures (if available).
+// Lining figures are the same height and baseline as capital letters. Best suited for use alongside capital letters, or for numbers used outside of prose.
+@mixin modern-figures {
+	font-feature-settings: "onum" 0, "tnum" 0;
+}
+
+// Use font's all-caps kerning for all caps text.
+@mixin all-caps {
+	text-transform: uppercase;
+	font-feature-settings: "cpsp", "onum" 0, "tnum" 0;
+	letter-spacing: 0.05em;
+}
+
+// Small caps.
+// Best suited for for acronyms that appear in running text and body copy.
+@mixin small-caps {
+	font-variant: small-caps;
+	font-feature-settings: "c2sc", "smcp";
+}
+
+// Antialias text.
+// Note: Works in Webkit/Blink browsers only.
+@mixin antialiasing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Show ellipsis if text overflows a single line.
+// This is kinda hacky as it depends on prefixed values that other browsers have adopted to maintain compat and changes the display of the parent. Recommended to use on a fresh element. Multiple lines does not work in IE.
+@mixin overflow-text($lines: 1) {
+	overflow: hidden;
+	@if $lines == 1 {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	} @else {
+		display: -webkit-box;
+		-webkit-line-clamp: $lines;
+		-webkit-box-orient: vertical;
+	}
+}
+
+// Hide copy (for image replacement).
+@mixin hide-text {
+	text-indent: 110%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+// Force long words to break across lines.
+@mixin force-wrap {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
+// Responsive font sizing.
+// Hat tip: Eduardo Bouças. https://css-tricks.com/snippets/sass/viewport-sized-typography-minimum-maximum-sizes/
+@mixin responsive-size($size, $min: false, $max: false) {
+	$sizeUnitless: $size / ($size - $size + 1);
+	$dimension: if(unit($size) == "vh", "height", "width");
+	$breakpointMin: $min / $sizeUnitless * 100;
+	@media (max-#{$dimension}: #{$breakpointMin}) {
+		font-size: $min;
+	}
+	@if $max {
+		$breakpointMax: $max / $sizeUnitless * 100;
+		@media (min-#{$dimension}: #{$breakpointMax}) {
+			font-size: $max;
+		}
+	}
+	font-size: $size;
+}

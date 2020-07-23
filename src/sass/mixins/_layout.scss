@@ -1,0 +1,23 @@
+@use "tokens";
+
+// Non overflow-based clearfix for elements that need things to be able to go outside of them.
+@mixin clearfix {
+	&:before,
+	&:after {
+		display: table;
+		content: " ";
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// Caps the maximum width of the page content.
+@mixin container {
+	width: 92%;
+	max-width: tokens.$layout-container-width;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: max(0px, env(safe-area-inset-right));
+	padding-left: max(0px, env(safe-area-inset-left));
+}

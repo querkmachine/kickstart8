@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
-const autoprefixer = require("gulp-autoprefixer");
+const postcss = require("gulp-postcss");
+const postcssPresetEnv = require("postcss-preset-env");
 const sass = require("gulp-dart-sass");
 const argv = require("yargs").argv;
 
@@ -20,10 +21,17 @@ gulp.task("css:compile", () => {
     .pipe(sourcemaps.init())
     .pipe(
       sass({
-        outputStyle: argv.minify ? "compressed" : "expanded"
+        outputStyle: argv.minify ? "compressed" : "expanded",
+        includePaths: ["./node_modules"]
       }).on("error", sass.logError)
     )
-    .pipe(autoprefixer())
+    .pipe(
+      postcss([
+        postcssPresetEnv({
+          features: ["logical-properties-and-values"]
+        })
+      ])
+    )
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("./dist/css"));
 });
