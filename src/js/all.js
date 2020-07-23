@@ -15,18 +15,20 @@
  * of the npm package.)
  */
 
+import "what-input";
+
 // import Datepicker from '../../components/datepicker/datepicker';
 
 function initAll(options) {
-  options = typeof options !== "undefined" ? options : {};
+	options = typeof options !== "undefined" ? options : {};
 
-  // Scope initialization to only certain parts of the page
-  // Defaults to entire document if not set
-  const scope = typeof options.scope !== "undefined" ? options.scope : document;
+	// Scope initialization to only certain parts of the page
+	// Defaults to entire document if not set
+	const scope = typeof options.scope !== "undefined" ? options.scope : document;
 
-  // scope.querySelectorAll('[data-module="kickstart-datepicker"]').forEach(datepicker => {
-  // 	new Datepicker(datepicker);
-  // });
+	// scope.querySelectorAll('[data-module="kickstart-datepicker"]').forEach(datepicker => {
+	// 	new Datepicker(datepicker);
+	// });
 }
 
 export { initAll };
