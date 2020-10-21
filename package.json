@@ -21,7 +21,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.6.4",
 		"@babel/preset-env": "^7.6.3",
-		"@frctl/fractal": "^1.2.0",
+		"@frctl/fractal": "1.2.1",
 		"@frctl/mandelbrot": "git+https://github.com/querkmachine/mandelbrot.git",
 		"@frctl/nunjucks": "^2.0.1",
 		"babelify": "^10.0.0",
