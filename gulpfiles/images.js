@@ -18,14 +18,15 @@ gulp.task("images:minify", () => {
 		.pipe(newer("./dist/images"))
 		.pipe(
 			imagemin([
-				imagemin.jpegtran({
-					progressive: true
+				imagemin.mozjpeg({
+					quality: 75,
+					progressive: true,
 				}),
 				imagemin.optipng({
-					optimizationLevel: 5
+					optimizationLevel: 5,
 				}),
 				imagemin.gifsicle({
-					interlaced: true
+					interlaced: true,
 				}),
 				imagemin.svgo({
 					multipass: true,
@@ -33,12 +34,12 @@ gulp.task("images:minify", () => {
 						{ convertShapeToPath: false },
 						{ removeViewBox: false },
 						{ removeDimensions: true },
-						{ cleanupIDs: false }
-					]
-				})
+						{ cleanupIDs: false },
+					],
+				}),
 			])
 		)
-		.on("error", ex => {
+		.on("error", (ex) => {
 			gulplog.error(ex);
 			this.emit("end");
 		})
