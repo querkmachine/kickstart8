@@ -52,7 +52,7 @@ const nunjucks = require("@frctl/nunjucks")({
 fractal.set("project.title", `Kickstart your design system`);
 
 fractal.components.engine(nunjucks);
-fractal.components.set("ext", ".(html|njk)");
+fractal.components.set("ext", ".njk");
 fractal.components.set("path", "./components");
 fractal.components.set("default.preview", "@preview");
 fractal.components.set("default.status", "prototype");
