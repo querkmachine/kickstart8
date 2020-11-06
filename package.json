@@ -8,7 +8,8 @@
 		"> 0.25%"
 	],
 	"scripts": {
-		"start": "gulp",
+		"start": "npm run serve",
+		"serve": "gulp default",
 		"clean": "gulp clean",
 		"build": "gulp build",
 		"export": "gulp export --minify",
