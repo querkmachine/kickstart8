@@ -9,7 +9,8 @@
 html {
 	color: tokens.$color-black;
 	background-color: tokens.$color-white;
-	font-family: typography.size(body);
+	font-family: tokens.$font-body;
+	font-size: typography.size(body);
 	line-height: tokens.$lead-default;
 	writing-mode: tokens.$writing-mode;
 	@if tokens.$rtl {
