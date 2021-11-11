@@ -5,7 +5,10 @@
   "description": "",
   "main": "./dist/js/all.js",
   "browserslist": [
-    "> 0.25%"
+    "last 2 versions",
+    "last 2 years",
+    "not dead",
+    ">2%"
   ],
   "scripts": {
     "start": "npm run serve",
