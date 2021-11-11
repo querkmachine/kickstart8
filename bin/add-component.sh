@@ -32,7 +32,6 @@ touch "$COMPONENT_PATH/macro.njk"
 touch "$COMPONENT_PATH/$COMPONENT_NAME_LOWER.njk"
 touch "$COMPONENT_PATH/$COMPONENT_NAME_LOWER.config.yaml"
 touch "$COMPONENT_PATH/README.md"
-touch "$COMPONENT_PATH/params.yaml"
 touch "$COMPONENT_PATH/$COMPONENT_NAME_LOWER.js"
 touch "$COMPONENT_PATH/_$COMPONENT_NAME_LOWER.scss"
 
@@ -74,20 +73,9 @@ cat <<EOF > "$COMPONENT_PATH/README.md"
 ## Browser considerations
 EOF
 
-# Prepopulate parameter docs
-cat <<EOF > "$COMPONENT_PATH/params.yaml"
-params:
-  - name: attributes
-    type: object
-    description: HTML attributes, such as data attributes, to add to the component.
-  - name: classes
-    type: string
-    description: Classes to add to the component.
-EOF
-
 # Prepopulate Sass file
 cat <<EOF > "$COMPONENT_PATH/_$COMPONENT_NAME_LOWER.scss"
-@use "tokens";
+@use "@querkmachine/felafel/src/scss/settings";
 
 .${NAMESPACE}-${COMPONENT_NAME_LOWER} {
     // Put code here
