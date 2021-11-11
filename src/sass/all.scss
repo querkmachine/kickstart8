@@ -1,7 +1,13 @@
-// Put project-specific overrides to the design tokens in this Sass map, if necessary.
-@use "tokens" with (
-	$client-name: 'Felinesoft'
-);
+@use "brand";
 
-// Load everything else.
-@use "shared";
+// Core (global) styles
+@use "core/index" as AllCore;
+
+// Objects
+@use "objects/index" as AllObjects;
+
+// Components
+// @use "button/button";
+
+// Overrides
+@use "overrides/index" as AllOverrides;

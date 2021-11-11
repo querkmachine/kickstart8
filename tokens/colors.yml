@@ -1,6 +1,0 @@
-props:
-  color_primary:
-    value: "hsl(0, 100%, 50%)"
-    category: palette-brand
-global:
-  type: color
