@@ -1,39 +1,47 @@
-const gulp = require("gulp");
-const sourcemaps = require("gulp-sourcemaps");
-const postcss = require("gulp-postcss");
-const postcssPresetEnv = require("postcss-preset-env");
-const sass = require("gulp-dart-sass");
-const argv = require("yargs").argv;
+const { src, dest, watch } = require("gulp");
 
-gulp.task("css:clean", () => {
-  const del = require("del");
-  return del(["./dist/css"]);
-});
+const clean = (cb) => {
+  const del = require("delete");
+  return del(["./dist/css"], cb);
+};
 
-gulp.task("css:watch", () => {
-  gulp.watch("./src/sass/**/*", gulp.parallel("css:compile"));
-  gulp.watch("./components/**/*.{sass,scss}", gulp.parallel("css:compile"));
-});
+const compile = () => {
+  const sourcemaps = require("gulp-sourcemaps");
+  const postcss = require("gulp-postcss");
+  const postcssPresetEnv = require("postcss-preset-env");
+  const postcssNano = require("cssnano");
+  const sass = require("gulp-dart-sass");
+  const argv = require("yargs").argv;
 
-gulp.task("css:compile", () => {
-  return gulp
-    .src("./src/sass/**/*.{sass,scss}")
+  const postcssPlugins = [
+    postcssPresetEnv({
+      features: {
+        "logical-properties-and-values": {
+          dir: argv.dir || "ltr",
+        },
+      },
+    }),
+  ];
+
+  if (argv.minify) {
+    postcssPlugins.push(postcssNano());
+  }
+
+  return src("./src/sass/**/*.{sass,scss}")
     .pipe(sourcemaps.init())
     .pipe(
       sass({
-        outputStyle: argv.minify ? "compressed" : "expanded",
-        includePaths: ["./node_modules"],
+        includePaths: ["./node_modules", "./components"],
       }).on("error", sass.logError)
     )
-    .pipe(
-      postcss([
-        postcssPresetEnv({
-          features: ["logical-properties-and-values"],
-        }),
-      ])
-    )
+    .pipe(postcss(postcssPlugins))
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("./dist/css"));
-});
+    .pipe(dest("./dist/css"));
+};
 
-gulp.task("css", gulp.series("css:clean", "css:compile"));
+exports.cssClean = clean;
+exports.cssCompile = compile;
+exports.cssWatch = () => {
+  watch("./src/scss/**/*", compile);
+  watch("./components/**/*", compile);
+};

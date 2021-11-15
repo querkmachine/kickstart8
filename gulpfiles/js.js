@@ -1,24 +1,20 @@
 const config = require("../package.json");
-const gulp = require("gulp");
-const browserify = require("browserify");
-const sourcemaps = require("gulp-sourcemaps");
-const argv = require("yargs").argv;
-const gulpif = require("gulp-if");
-const vinylSource = require("vinyl-source-stream");
-const vinylBuffer = require("vinyl-buffer");
-const uglify = require("gulp-uglify");
+const { dest, watch } = require("gulp");
 
-gulp.task("js:clean", () => {
-  const del = require("del");
-  return del(["./dist/js"]);
-});
+const clean = (cb) => {
+  const del = require("delete");
+  return del(["./dist/js"], cb);
+};
 
-gulp.task("js:watch", () => {
-  gulp.watch("./src/js", gulp.parallel("js:compile"));
-  gulp.watch("./components/**/*.js", gulp.parallel("js:compile"));
-});
+const compile = () => {
+  const argv = require("yargs").argv;
+  const browserify = require("browserify");
+  const gulpIf = require("gulp-if");
+  const sourcemaps = require("gulp-sourcemaps");
+  const uglify = require("gulp-uglify");
+  const vinylBuffer = require("vinyl-buffer");
+  const vinylSource = require("vinyl-source-stream");
 
-gulp.task("js:compile", () => {
   const b = browserify({
     entries: ["./src/js/all.js"],
     standalone: config.namespace,
@@ -29,9 +25,14 @@ gulp.task("js:compile", () => {
     .pipe(vinylSource("all.js"))
     .pipe(vinylBuffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(gulpif(argv.minify, uglify()))
+    .pipe(gulpIf(argv.minify, uglify()))
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("./dist/js"));
-});
+    .pipe(dest("./dist/js"));
+};
 
-gulp.task("js", gulp.series("js:clean", "js:compile"));
+exports.jsClean = clean;
+exports.jsCompile = compile;
+exports.jsWatch = () => {
+  watch("./src/js/**/*.js", compile);
+  watch("./components/**/*.js", compile);
+};

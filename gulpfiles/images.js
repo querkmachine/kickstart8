@@ -1,49 +1,48 @@
-const gulp = require("gulp");
-const gulplog = require("gulplog");
-const newer = require("gulp-newer");
-const imagemin = require("gulp-imagemin");
+const { src, dest, watch } = require("gulp");
 
-gulp.task("images:clean", () => {
-	const del = require("del");
-	return del(["./dist/images"]);
-});
+const clean = (cb) => {
+  const del = require("delete");
+  return del(["./dist/images"], cb);
+};
 
-gulp.task("images:watch", () => {
-	gulp.watch("./src/images/**/*", gulp.parallel("images"));
-});
+const compile = () => {
+  const imagemin = require("gulp-imagemin");
+  const log = require("gulplog");
+  const newer = require("gulp-newer");
+  return src("./src/images/**/*.{gif,jpeg,jpg,png,svg}")
+    .pipe(newer("./dist/images"))
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({
+          interlaced: true,
+        }),
+        imagemin.mozjpeg({
+          quality: 75,
+          progressive: true,
+        }),
+        imagemin.optipng({
+          optimizationLevel: 5,
+        }),
+        imagemin.svgo({
+          multipass: true,
+          plugins: [
+            { convertShapeToPath: false },
+            { removeViewBox: false },
+            { removeDimensions: true },
+            { cleanupIDs: false },
+          ],
+        }),
+      ])
+    )
+    .on("error", (ex) => {
+      log.error(ex);
+      this.emit("end");
+    })
+    .pipe(dest("./dist/images"));
+};
 
-gulp.task("images:minify", () => {
-	return gulp
-		.src("./src/images/**/*")
-		.pipe(newer("./dist/images"))
-		.pipe(
-			imagemin([
-				imagemin.mozjpeg({
-					quality: 75,
-					progressive: true,
-				}),
-				imagemin.optipng({
-					optimizationLevel: 5,
-				}),
-				imagemin.gifsicle({
-					interlaced: true,
-				}),
-				imagemin.svgo({
-					multipass: true,
-					plugins: [
-						{ convertShapeToPath: false },
-						{ removeViewBox: false },
-						{ removeDimensions: true },
-						{ cleanupIDs: false },
-					],
-				}),
-			])
-		)
-		.on("error", (ex) => {
-			gulplog.error(ex);
-			this.emit("end");
-		})
-		.pipe(gulp.dest("./dist/images"));
-});
-
-gulp.task("images", gulp.series("images:clean", "images:minify"));
+exports.imagesClean = clean;
+exports.imagesCompile = compile;
+exports.imagesWatch = () => {
+  watch("./src/images/**/*.{gif,jpeg,jpg,png,svg}", compile);
+};

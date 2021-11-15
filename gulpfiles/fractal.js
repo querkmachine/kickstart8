@@ -1,4 +1,3 @@
-const gulp = require("gulp");
 const path = require("path");
 const fs = require("fs");
 const merge = require("lodash/merge");
@@ -67,12 +66,12 @@ fractal.web.theme(
   })
 );
 
-gulp.task("fractal:clean", () => {
-  const del = require("del");
-  return del(["./export"]);
-});
+const clean = (cb) => {
+  const del = require("delete");
+  return del(["./export"], cb);
+};
 
-gulp.task("fractal:watch", () => {
+const watch = () => {
   const logger = fractal.cli.console;
   const server = fractal.web.server({
     sync: true,
@@ -84,9 +83,9 @@ gulp.task("fractal:watch", () => {
   return server.start().then(() => {
     logger.success(`Fractal server is now running at ${server.url}.`);
   });
-});
+};
 
-gulp.task("fractal", () => {
+const exportStatic = () => {
   const logger = fractal.cli.console;
   const builder = fractal.web.builder();
   builder.on("progress", (completed, total) => {
@@ -98,4 +97,8 @@ gulp.task("fractal", () => {
   return builder.build().then(() => {
     logger.success("Fractal build completed.");
   });
-});
+};
+
+exports.fractalClean = clean;
+exports.fractalExport = exportStatic;
+exports.fractalWatch = watch;

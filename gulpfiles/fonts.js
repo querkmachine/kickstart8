@@ -1,16 +1,16 @@
-const gulp = require("gulp");
+const { src, dest, watch } = require("gulp");
 
-gulp.task("fonts:clean", () => {
-	const del = require("del");
-	return del(["./dist/fonts"]);
-});
+const clean = (cb) => {
+  const del = require("delete");
+  return del(["./dist/fonts"], cb);
+};
 
-gulp.task("fonts:watch", () => {
-	gulp.watch("./src/fonts/**/*", gulp.parallel("fonts"));
-});
+const compile = () => {
+  return src("./src/fonts/**/*").pipe(dest("./dist/fonts"));
+};
 
-gulp.task("fonts:compile", () => {
-	return gulp.src("./src/fonts/**/*").pipe(gulp.dest("./dist/fonts"));
-});
-
-gulp.task("fonts", gulp.series("fonts:clean", "fonts:compile"));
+exports.fontsClean = clean;
+exports.fontsCompile = compile;
+exports.fontsWatch = () => {
+  watch("./src/fonts/**/*", compile);
+};
