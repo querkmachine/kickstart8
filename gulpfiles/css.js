@@ -42,6 +42,6 @@ const compile = () => {
 exports.cssClean = clean;
 exports.cssCompile = compile;
 exports.cssWatch = () => {
-  watch("./src/scss/**/*", compile);
+  watch("./src/sass/**/*", compile);
   watch("./components/**/*", compile);
 };

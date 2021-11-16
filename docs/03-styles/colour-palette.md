@@ -6,8 +6,17 @@ status: draft
 
 ## Brand colours
 
-{{ fractalColoursSingle(tokens.colors | theoTokenCategory('palette-brand')) }}
+{% set brandColors = {
+  "$primary": "#ff0000",
+  "$secondary": "rgba(0, 255, 0, .25)"
+} %}
+
+{{ fractalColoursSingle(brandColors) }}
 
 ## Neutrals
 
-{{ fractalColoursSingle(tokens.colors | theoTokenCategory('palette-neutral')) }}
+{% set neutralColors = {
+  "$grey": "#777777"
+} %}
+
+{{ fractalColoursSingle(neutralColors) }}

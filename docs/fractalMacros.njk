@@ -43,10 +43,10 @@
                     <th colspan="2">{{ title }}</th>
                 </tr>
             {%- endif -%}
-            {%- for key, data in section -%}
+            {%- for key, value in section -%}
                 <tr>
-                    <td width="50%"><code>{{ key | theoTokenSass }}</code></td>
-                    <td>{{ data.value }}</td>
+                    <td width="50%"><code>{{ key }}</code></td>
+                    <td>{{ value }}</td>
                 </tr>
             {%- endfor -%}
         {%- endfor -%}
@@ -59,11 +59,11 @@
         { text: 'Token' },
         { text: 'Value', attributes: { 'colspan': 2 } }
     ]) %}
-        {%- for key, data in tokens -%}
+        {%- for key, value in tokens -%}
             <tr>
-                <td width="50%"><code>{{ key | theoTokenSass }}</code></td>
-                <td width="20"><span class="Fractal-Swatch" style="background-color:{{ data.value }}"></span></td>
-                <td>{{ data.value }}</td>
+                <td width="50%"><code>{{ key }}</code></td>
+                <td width="20"><span class="Fractal-Swatch" style="background-color:{{ value }}"></span></td>
+                <td>{{ value }}</td>
             </tr>
         {%- endfor -%}
     {% endcall %}
@@ -76,7 +76,7 @@
     ]) %}
         {%- for key, data in tokens -%}
             <tr>
-                <td width="20%"><code>{{ key | theoTokenSass }}</code> {{ longPreview | dump }}</td>
+                <td width="20%"><code>{{ key }}</code> {{ longPreview | dump }}</td>
                 <td>
                     <div class="Fractal-Typerun__preview" style="{{ tokenType }}: {{ data.value }}">
                         {{- text -}}
