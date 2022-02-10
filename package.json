@@ -1,15 +1,10 @@
 {
   "name": "kickstart",
   "namespace": "kickstart",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "",
   "main": "./dist/js/all.js",
-  "browserslist": [
-    "last 2 versions",
-    "last 2 years",
-    "not dead",
-    ">2%"
-  ],
+  "browserslist": "last 2 versions and last 2 years and not dead",
   "scripts": {
     "start": "npm run serve",
     "serve": "gulp serve",
