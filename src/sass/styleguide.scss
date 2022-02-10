@@ -7,36 +7,6 @@ html {
   @include typography.fs-font-stack(body);
 }
 
-// Override font wherever Open Sans is used
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.Pen-title,
-.Tree-title,
-.Tree-item,
-.Tree-collectionLabel,
-.Document-title,
-.Prose,
-.Prose h1,
-.Prose h2,
-.Prose h3,
-.Prose caption,
-.Status-label,
-.Browser-tab a,
-.Error--render .Error-title,
-.Error--render .Error-message,
-.FileBrowser-selectWrapper .select2-container,
-.FileBrowser-select-label,
-.select2-results__option,
-.Meta-key,
-.Meta-value {
-  font-family: inherit;
-  font-feature-settings: "liga", "dlig", "kern";
-}
-
 .Prose {
   max-width: none;
 }
