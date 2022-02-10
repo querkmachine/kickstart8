@@ -1,7 +1,5 @@
 # Kickstart8
 
-**Kickstart8 is still under development and may still integrate breaking changes. The version number is not getting bumped in the meantime.**
-
 Kickstart8 is... version 8 of [Kickstart](https://github.com/querkmachine/kickstart), my personal project boilerplate.
 
 It's a complete rewrite, aiming to modernise the original thing with some newer ideas:
