@@ -18,7 +18,7 @@ Kickstart8 is directly inspired by the open-source work being done over at [GOV.
 
 `npm run start`: Compiles assets in development mode, where code is expanded and changes are automatically compiled.
 
-`npm run add <component-name>`: Adds a new component to the design system. This command creates a boilerplate component in the `components` directory that you can build upon.
+`npm run add "Component Name"`: Adds a new component to the design system. This command creates a boilerplate component in the `components` directory that you can build upon. To ensure that the component references are generated correctly, make sure that the component name is quoted, uses spaces, and has each word capitalised.
 
 `npm run build`: Compiles assets and puts them in the `dist` directory. Get minified versions by running `npm run build -- --minify`.
 
