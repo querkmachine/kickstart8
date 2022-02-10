@@ -4,7 +4,6 @@ Kickstart8 is... version 8 of [Kickstart](https://github.com/querkmachine/kickst
 
 It's a complete rewrite, aiming to modernise the original thing with some newer ideas:
 
-- Design tokens that are separate to the Sass.
 - Fully abstracted components: the HTML (well, Nunjucks), Sass, JS, and documentation for each component are all contained in a single folder.
 - Make more use of Nunjucks macros and the ability to nest them inside one another.
 - With abstraction, make it possible to only import certain components rather than loading everything for all of them in one go.
@@ -17,13 +16,13 @@ Kickstart8 is directly inspired by the open-source work being done over at [GOV.
 
 ## Command line scripts
 
-`npm run start`: Compiles tokens and assets in development mode, where code is expanded and changes are automatically compiled.
+`npm run start`: Compiles assets in development mode, where code is expanded and changes are automatically compiled.
 
 `npm run add <component-name>`: Adds a new component to the design system. This command creates a boilerplate component in the `components` directory that you can build upon.
 
-`npm run build`: Compiles tokens and assets and puts them in the `dist` directory. Get minified versions by running `npm run build -- --minify`.
+`npm run build`: Compiles assets and puts them in the `dist` directory. Get minified versions by running `npm run build -- --minify`.
 
-`npm run export`: Compiles tokens, minified assets and a static version of the Fractal system to the `export` directory.
+`npm run export`: Compiles minified assets and a static version of the Fractal system to the `export` directory.
 
 `npm run prettify`: Automatically checks for code format breaches in all files supported by Prettier (notably JS, Sass, Markdown and Yaml), correcting them automatically where possible. This currently uses the default Prettier configuration.
 
@@ -36,4 +35,3 @@ Namespaces are currently hardcoded in a couple of places. They need updating if 
 - Pre-existing components don't update their namespace. You need to update them yourself.
 - The `NAMESPACE` constant in `bin/add-component.sh` is used to determine the namespace for new boilerplated components.
 - The `namespace` option in `package.json` is used to namespace all JavaScript code, so that exported methods don't pollute the global namespace.
-- Token namespaces, if used, need to be hardcoded manually. [Please let us automate this, Salesforce.](https://github.com/salesforce-ux/theo/issues/185)
