@@ -2,10 +2,16 @@
 
 # A script to make new components and their files
 
+# SET THE PROJECT NAMESPACE HERE
+# |
+# V
+NAMESPACE="kickstart"
+# ^
+# |
+
 # Constants
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$(dirname "$CURRENT_DIR")"
-NAMESPACE="kickstart"
 
 COMPONENT_NAME=$1
 while [ -z "$COMPONENT_NAME" ]

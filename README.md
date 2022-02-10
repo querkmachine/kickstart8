@@ -18,7 +18,7 @@ Kickstart8 is directly inspired by the open-source work being done over at [GOV.
 
 `npm run start`: Compiles assets in development mode, where code is expanded and changes are automatically compiled.
 
-`npm run add "Component Name"`: Adds a new component to the design system. This command creates a boilerplate component in the `components` directory that you can build upon. To ensure that the component references are generated correctly, make sure that the component name is quoted, uses spaces, and has each word capitalised.
+`npm run add "Component Name"`: Adds a new component to the design system. See "Adding components" below.
 
 `npm run build`: Compiles assets and puts them in the `dist` directory. Get minified versions by running `npm run build -- --minify`.
 
@@ -35,3 +35,12 @@ Namespaces are currently hardcoded in a couple of places. They need updating if 
 - Pre-existing components don't update their namespace. You need to update them yourself.
 - The `NAMESPACE` constant in `bin/add-component.sh` is used to determine the namespace for new boilerplated components.
 - The `namespace` option in `package.json` is used to namespace all JavaScript code, so that exported methods don't pollute the global namespace.
+- Update the pre-existing reference in `components/_preview.njk` to match.
+
+## Adding components
+
+A helper script to boilerplate new components exists: `npm run add "Component Name"`.
+
+This command creates a folder in the components directory and pre-populates it with the Nunjucks, Sass, JavaScript and documentation files necessary to create a new component. It does NOT add references in the entry stylesheet or JavaScript files, you must do this manually.
+
+⚠️ To ensure that the component references are generated correctly, make sure that the component name is quoted, uses spaces, and has each word capitalised.

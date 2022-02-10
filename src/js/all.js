@@ -17,18 +17,22 @@
 
 import "what-input";
 
+// STEP ONE: Import the component JS
 // import Datepicker from '../../components/datepicker/datepicker';
 
 function initAll(options) {
-	options = typeof options !== "undefined" ? options : {};
+  options = typeof options !== "undefined" ? options : {};
 
-	// Scope initialization to only certain parts of the page
-	// Defaults to entire document if not set
-	const scope = typeof options.scope !== "undefined" ? options.scope : document;
+  // Scope initialization to only certain parts of the page
+  // Defaults to entire document if not set
+  const scope = typeof options.scope !== "undefined" ? options.scope : document;
 
-	// scope.querySelectorAll('[data-module="kickstart-datepicker"]').forEach(datepicker => {
-	// 	new Datepicker(datepicker);
-	// });
+  // STEP TWO: Bind the import to the relevant [data-module] attribue
+  // scope.querySelectorAll('[data-module="kickstart-datepicker"]').forEach(m => {
+  // 	new Datepicker(m);
+  // });
 }
 
+// STEP THREE: Optionally, add it to the list of exports
+// e.g. `export { initAll, Datepicker }`
 export { initAll };
